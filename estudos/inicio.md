@@ -25,14 +25,14 @@ Um sistema operacional não é:
 
 * Resumo! 
 
-É o programa que faz outros programas rodarem. Gerencia as interrupções (eventos gerados pelo hardware: ) e 
+É o programa que faz outros programas rodarem. Gerencia as interrupções (eventos gerados pelo hardware: input) e 
 
 # Bootloader
 
-Primeiro programa que roda na máquina (faz o boot)
+Primeiro programa que roda na máquina (faz o boot). Pra nós, vamos focar no kernel, e usaremos GRUB/GNU MULTIBOOT para fazer o sistema.
 
 
- 1. Nand2Tetris (entender o computador)
+1. Nand2Tetris (entender o computador)
          ↓
 2. Beej's Guide (C de verdade)
          ↓
