@@ -2,14 +2,6 @@
 #include <stddef.h>
 #include "vga.h"
 
-size_t strlen(const char *str) {
-    size_t len = 0;
-    while (str[len] != '\0') {
-        len++;
-    }
-    return len;
-}
-
 void printchar(uint16_t *buffer, int y, int x, char cha, int color) {
     const size_t index = y * VGA_WIDTH + x;
     buffer[index] = (uint16_t) cha | color << 8;

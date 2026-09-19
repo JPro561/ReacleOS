@@ -29,10 +29,13 @@ reacleos.iso: src/kernel.c src/vga/vga.c src/linker.ld
 	
 	$(CC) -c src/kernel.c -o builds/deps/kernel.o $(CFLAGS)
 	$(CC) -c src/vga/vga.c -o builds/deps/vga.o $(CFLAGS)
-	$(CC) -c src/display/display_manager/dm.c -o builds/deps/dm.o $(CFLAGS)
-	$(CC) -c src/display/display/display.c -o builds/deps/display.o $(CFLAGS)
+	$(CC) -c src/render.c -o builds/deps/render.o $(CFLAGS)
+	$(CC) -c src/basic.c -o builds/deps/basic.o $(CFLAGS)
+	$(CC) -c src/input_h.c -o builds/deps/input_h.o $(CFLAGS)
+	$(CC) -c src/font.c -o builds/deps/font.o $(CFLAGS)
+	$(CC) -c src/bash.c -o builds/deps/bash.o $(CFLAGS)
 	
-	$(LD) $(LDFLAGS) builds/deps/kernel.o builds/deps/vga.o builds/deps/dm.o builds/deps/display.o -o iso/reacleos
+	$(LD) $(LDFLAGS) builds/deps/kernel.o builds/deps/vga.o builds/deps/render.o builds/deps/basic.o builds/deps/input_h.o builds/deps/font.o builds/deps/bash.o -o iso/reacleos
 	
 	xorriso -as mkisofs -b limine-bios-cd.bin \
 		-no-emul-boot -boot-load-size 4 -boot-info-table \

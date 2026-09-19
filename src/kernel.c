@@ -2,11 +2,15 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "vga/vga.h"
-#include "asm.h"
-#include "display/display_manager/dm.h"
-#include "display/display/display.h"
+#include "basic.h"
+#include "render.h"
+#include "input_h.h"
+#include "bash.h"
 
 uint16_t *vga_buffer;
+
+static InputHandler input_buffer;
+char bash_buffer[BASH_BUFFER_SIZE];
 
 // INIT KERNEL
 void init_kernel() {
@@ -36,7 +40,13 @@ void _start() {
         for (;;) { __asm__("hlt"); }
     }
 
-    display();
+    framebuffer fb = get_framebuffer();
+
+    for (;;) {
+        input_handler(&input_buffer);
+        updateBash(bash_buffer, &input_buffer);
+        render(bash_buffer, &input_buffer, &fb);
+    }
 
     for (;;) { __asm__("hlt"); }
 }
